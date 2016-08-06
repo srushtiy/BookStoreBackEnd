@@ -20,7 +20,7 @@ public class ProductTest {
 	   
 	   Product product = 	(Product) context.getBean("product");
 	   product.setId("P100");
-	   product.setName("Da Vinci Code");
+	   product.setName("The Da Vinci Code");
 	   product.setDescription("History Fiction");
 	   
 	   
