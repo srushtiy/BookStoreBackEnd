@@ -30,8 +30,8 @@ public class CartDAOimpl implements CartDAO {
 	}
 
 	@Transactional
-	public Cart get(String id) {
-		String hql = "from Cart where id=" + "'" + id + "'";
+	public Cart getbyuserid(String userid)  {
+		String hql = "from Cart where id=" + "'" + userid + "'";
 		// from category where id = '101'
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		List<Cart> listCart = (List<Cart>) query.list();
@@ -49,11 +49,11 @@ public class CartDAOimpl implements CartDAO {
 	}
 
 	@Transactional
-	public void delete(String id) {
+	public void delete(String cartid) {
 		Cart cart = new Cart();
-		cart.setId(id);
+		cart.setCartid(cartid);
 		sessionFactory.getCurrentSession().delete(cart);
-
 	}
+
 
 }

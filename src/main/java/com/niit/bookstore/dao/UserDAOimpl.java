@@ -6,11 +6,13 @@ import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.bookstore.model.Category;
 import com.niit.bookstore.model.User;
 
+@Repository("userDAO")
 public class UserDAOimpl implements UserDAO{
 	
 	
@@ -22,6 +24,7 @@ public class UserDAOimpl implements UserDAO{
 		this.sessionFactory = sessionFactory;
 	}
 
+	@Transactional
 	public List<User> userlist() {
 		@SuppressWarnings("unchecked")
 		List<User> listUser = (List<User>) 
@@ -32,8 +35,25 @@ public class UserDAOimpl implements UserDAO{
 	}
 		
 	@Transactional
-	public User get(String id) {
-		String hql = "from User where id=" + "'"+ id +"'";
+	public User get(String userid) {
+		return (User) sessionFactory.getCurrentSession().get(User.class, userid);
+	}
+	
+	@Transactional
+	public void saveorUpdate(User user) {
+		sessionFactory.getCurrentSession().saveOrUpdate(user);	
+	}
+	
+	/*@Transactional
+	public void delete(String id) {
+		User user = new User();
+		user.setUserid(id);
+		sessionFactory.getCurrentSession().delete(user);
+	}*/
+	
+	@Transactional
+	public User fetchbyUsername(String username){
+		String hql = "from User where username=" + "'"+ username +"'";
 		//  from category where id = '101'
 		Query query =  sessionFactory.getCurrentSession().createQuery(hql);
 		List<User> listUser = (List<User>) query.list();
@@ -43,25 +63,6 @@ public class UserDAOimpl implements UserDAO{
 		}
 		return null;
 	}
-	
-	@Transactional
-	public void saveorUpdate(User user) {
-		sessionFactory.getCurrentSession().saveOrUpdate(user);
 		
-		
-	}
-	
-	@Transactional
-	public void delete(String id) {
-		User user = new User();
-		user.setId(id);
-		sessionFactory.getCurrentSession().delete(user);
 	}
 
-	public boolean isValidUser(String username, String password) {
-		
-		return false;
-	}
-	
-
-}

@@ -6,12 +6,12 @@ import com.niit.bookstore.model.Supplier;
 
 public interface SupplierDAO {
 	
-	public List<Supplier> supplierlist();
+	List<Supplier> supplierlist();
 
-	public Supplier get(String id);
+	Supplier get(String id);
 
-	public void saveorUpdate(Supplier supplier);
+	void saveorUpdate(Supplier supplier);
 
-	public void delete(String id);
+	void delete(String id);
 
 }

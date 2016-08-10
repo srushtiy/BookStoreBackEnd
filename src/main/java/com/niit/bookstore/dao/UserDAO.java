@@ -5,14 +5,14 @@ import java.util.List;
 import com.niit.bookstore.model.User;
 
 public interface UserDAO {
-	public List<User> userlist();
+	List<User> userlist();
 
-	public User get(String id);
+	User get(String userid);
 
-	public void saveorUpdate(User user);
-
-	public void delete(String id);
+	void saveorUpdate(User user);
 	
-	public boolean isValidUser(String username, String password);
+	User fetchbyUsername(String username);
+
+	/*void delete(String id);*/
 
 }

@@ -15,6 +15,11 @@ public interface CategoryDAO {
 	public void saveOrUpdate(Category category);
 
 	public void delete(String id);
+	
+	/*List<Product> selectedCategoryProductList(String id);
+	
+	int getProductCountByCategory(String id);	
+*/
 
 
 

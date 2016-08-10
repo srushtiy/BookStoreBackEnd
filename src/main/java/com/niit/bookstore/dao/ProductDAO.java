@@ -5,12 +5,12 @@ import java.util.List;
 import com.niit.bookstore.model.Product;
 
 public interface ProductDAO {
-	public List<Product> productlist();
+	List<Product> productlist();
 
-	public Product get(String id);
+	Product get(String id);
 
-	public void saveorUpdate(Product product);
+	void saveorUpdate(Product product);
 
-	public void delete(String id);
+	void delete(String id);
 
 }

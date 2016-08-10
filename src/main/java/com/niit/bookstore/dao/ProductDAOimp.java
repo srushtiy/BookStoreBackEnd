@@ -21,7 +21,7 @@ public class ProductDAOimp implements ProductDAO{
 		this.sessionFactory=sessionFactory;
 	}
 	
-
+	@Transactional
 	public List<Product> productlist() {
 		@SuppressWarnings("unchecked")
 		List<Product> listProduct = (List<Product>) 
@@ -31,7 +31,8 @@ public class ProductDAOimp implements ProductDAO{
 		return listProduct;
 		
 	}
-
+	
+	@Transactional
 	public Product get(String id) {
 		String hql = "from Product where id=" + "'"+ id +"'";
 		//  from category where id = '101'
@@ -54,7 +55,7 @@ public class ProductDAOimp implements ProductDAO{
 	@Transactional
 	public void delete(String id) {
 		Product product = new Product();
-		product.setId(id);
+		product.setP_id(id);
 		sessionFactory.getCurrentSession().delete(product);
 	
 	}

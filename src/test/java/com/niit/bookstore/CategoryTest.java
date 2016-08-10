@@ -18,16 +18,16 @@ public class CategoryTest {
 	   CategoryDAO categoryDAO = 	(CategoryDAO) context.getBean("categoryDAO");
 	   
 	   Category category = 	(Category) context.getBean("category");
-	   category.setId("SG100");
-	   category.setName("SSName100");
-	   category.setDescription("SSDesc100");
+	   category.setCatid("C005");;
+	   category.setCatname("Sports and Recreation");
+	   category.setCatdescription("Sports, Camping,Football,Tennis");
 	   
 	   
 	   categoryDAO.saveOrUpdate(category);
 	   
 	   
 	   
-	   
+	   /*
 	  if(   categoryDAO.get("sdfsf") ==null)
 	  {
 		  System.out.println("Category does not exist");
@@ -36,7 +36,7 @@ public class CategoryTest {
 	  {
 		  System.out.println("Category exist .. the details are ..");
 		  System.out.println();
-	  }
+	  }*/
 		
 		
 		

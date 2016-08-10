@@ -1,67 +1,69 @@
 package com.niit.bookstore.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.springframework.stereotype.Component;
+
+@Entity
+@Table
+@Component
 public class User {
-	private String name;
+
+	@Id
+	private String userid;
 	private String username;
 	private String password;
-	private String email;
-	private String id;
-	private int dob;
+	private String useremail;
 	private String gender;
-	private int contact;
-	private boolean admin;
-	public boolean isAdmin() {
-		return admin;
+	private String usercontact;
+
+	public String getuserid() {
+		return userid;
 	}
-	public void setAdmin(boolean admin) {
-		this.admin = admin;
+
+	public void setUserid(String userID) {
+		this.userid = userID;
 	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
-	public int getDob() {
-		return dob;
-	}
-	public void setDob(int dob) {
-		this.dob = dob;
-	}
-	public String getGender() {
-		return gender;
-	}
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-	public int getContact() {
-		return contact;
-	}
-	public void setContact(int contact) {
-		this.contact = contact;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
+
 	public String getUsername() {
 		return username;
 	}
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
+
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getUseremail() {
+		return useremail;
+	}
+
+	public void setUseremail(String useremail) {
+		this.useremail = useremail;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String getUsercontact() {
+		return usercontact;
+	}
+
+	public void setUsercontact(String usercontact) {
+		this.usercontact = usercontact;
 	}
 }

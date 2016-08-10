@@ -2,19 +2,16 @@ package com.niit.bookstore.dao;
 
 import java.util.List;
 
-
-import org.springframework.transaction.annotation.Transactional;
-
 import org.hibernate.Criteria;
 import org.hibernate.Query;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.bookstore.model.Category;
 
-@Repository("categoryDAO")
+@Repository(value="categoryDAO")
 public class CategoryDAOimpl implements CategoryDAO {
 	
 
@@ -36,7 +33,7 @@ public class CategoryDAOimpl implements CategoryDAO {
 	@Transactional
 	public void delete(String id) {
 		Category category = new Category();
-		category.setId(id);
+		category.setCatid(id);
 		sessionFactory.getCurrentSession().delete(category);
 	}
 
@@ -63,6 +60,27 @@ public class CategoryDAOimpl implements CategoryDAO {
 		return listCategory;
 	}
 	
+	/*@Transactional
+	public List<Product> selectedCategoryProductList(String id)
+	{
+		String hql="from Product where categoryId=" + "'" + id + "'";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		List<Product> listSelectedProducts = query.getResultList();
+		return listSelectedProducts; 
+		
+	
+	}
+	
+	@Transactional
+	public int getProductCountByCategory(String id)
+	{
+		String hql="from Product where categoryId=" + "'" + id + "'";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		List<Product> listSelectedProducts = query.getResultList();
+		return listSelectedProducts.size(); 
+		
+	
+	}*/
 	
 
 

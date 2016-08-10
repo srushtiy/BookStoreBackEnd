@@ -6,12 +6,13 @@ import com.niit.bookstore.model.Cart;
 
 public interface CartDAO {
 
-	public List<Cart> list();
+	List<Cart> list();
 
-	public Cart get(String id);
+	Cart getbyuserid(String userid);
 	
-	public void saveOrUpdate(Cart cart);
+	void saveOrUpdate(Cart cart);
 
-	public void delete(String id);
+	void delete(String cartid);
+	
 
 }

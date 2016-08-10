@@ -1,6 +1,5 @@
 package com.niit.bookstore.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -8,42 +7,48 @@ import javax.persistence.Table;
 import org.springframework.stereotype.Component;
 
 @Entity
-@Table
+@Table(name="category")
 @Component
-
 public class Category {
 	
-	
-	private String id;
-
-
-	private String name;
-
-	private String description;
-
 	@Id
-	public String getId() {
-		return id;
+	private String catid;
+
+	private String catname;
+
+	private String catdescription;
+	
+	private String catimg;
+
+	public String getCatid() {
+		return catid;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setCatid(String catid) {
+		this.catid = catid;
 	}
 
-	public String getName() {
-		return name;
+	public String getCatname() {
+		return catname;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setCatname(String catname) {
+		this.catname = catname;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getCatdescription() {
+		return catdescription;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setCatdescription(String catdescription) {
+		this.catdescription = catdescription;
 	}
 
+	public String getCatimg() {
+		return catimg;
+	}
+
+	public void setCatimg(String catimg) {
+		this.catimg = catimg;
+	}
 }

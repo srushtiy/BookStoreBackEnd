@@ -1,49 +1,49 @@
 package com.niit.bookstore.model;
 
-public class Cart {
-	
-	private String id;
-	private String product_ID;
-	private String product_name;
-	private int quantity;
-	private double price;
-	private String description;
-	public String getProduct_ID() {
-		return product_ID;
-	}
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
-	public void setProduct_ID(String product_ID) {
-		this.product_ID = product_ID;
-	}
-	public String getProduct_name() {
-		return product_name;
-	}
-	public void setProduct_name(String product_name) {
-		this.product_name = product_name;
-	}
-	public int getQuantity() {
-		return quantity;
-	}
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
-	public double getPrice() {
-		return price;
-	}
-	public void setPrice(double price) {
-		this.price = price;
-	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+import org.springframework.stereotype.Component;
+
+@Entity
+@Component
+public class Cart {
+
+	public String getCartid() {
+		return cartid;
+	}
+
+	public void setCartid(String cartid) {
+		this.cartid = cartid;
+	}
+
+	public String getUserid() {
+		return userid;
+	}
+
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
+
+	public double getTotal_price() {
+		return total_price;
+	}
+
+	public void setTotal_price(double total_price) {
+		this.total_price = total_price;
+	}
+
+	public int getProduct_quantity() {
+		return product_quantity;
+	}
+
+	public void setProduct_quantity(int product_quantity) {
+		this.product_quantity = product_quantity;
+	}
+
+	@Id
+	private String cartid;
+	private String userid;
+	private double total_price;
+	private int product_quantity;
 }
