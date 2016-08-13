@@ -1,5 +1,7 @@
 package com.niit.bookstore.model;
 
+import java.util.UUID;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -12,28 +14,39 @@ import org.springframework.stereotype.Component;
 public class User {
 
 	@Id
-	private String userid;
-	private String username;
+	private String userid; // should match with path
+	private String first_name;
+	private String last_name;
+
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
+
+	public String getFirst_name() {
+		return first_name;
+	}
+
+	public void setFirst_name(String first_name) {
+		this.first_name = first_name;
+	}
+
+	public String getLast_name() {
+		return last_name;
+	}
+
+	public void setLast_name(String last_name) {
+		this.last_name = last_name;
+	}
+
+	public String getUserid() {
+		return userid;
+	}
+
 	private String password;
 	private String useremail;
 	private String gender;
 	private String usercontact;
-
-	public String getuserid() {
-		return userid;
-	}
-
-	public void setUserid(String userID) {
-		this.userid = userID;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
+	private String address;
 
 	public String getPassword() {
 		return password;
@@ -66,4 +79,18 @@ public class User {
 	public void setUsercontact(String usercontact) {
 		this.usercontact = usercontact;
 	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	
+	
+	public User(){
+		this.userid = "U" + UUID.randomUUID().toString().substring(24).toUpperCase();
+	}
+	
 }

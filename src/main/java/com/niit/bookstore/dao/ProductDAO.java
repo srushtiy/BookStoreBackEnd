@@ -12,5 +12,7 @@ public interface ProductDAO {
 	void saveorUpdate(Product product);
 
 	void delete(String id);
+	
+	List<Product> getListbyCatId(String catid);
 
 }

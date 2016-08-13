@@ -15,7 +15,7 @@ public class UserTest {
 		
 		UserDAO userDAO =(UserDAO)context.getBean("userDAO");
 		
-		user.setUsername("danbrown");
+		user.setUseremail("danbrown@gmail.com");
 		user.setUsercontact("9920766556");
 		user.setGender("Male");
 		user.setPassword("danbrown");

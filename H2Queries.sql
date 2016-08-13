@@ -34,10 +34,12 @@ constraint fk_product_supId foreign key(supId) references supplier(supId) on del
 create table user(
 userid varchar(30),
 usercontact varchar(30) not null,
+first_name varchar(50) not null,
+last_name varchar(50) not null,
 gender varchar(10) not null,
 password varchar(200) not null,
 useremail varchar(255) not null,
-username varchar(200) not null,
+address varchar(max),
 constraint pk_user_userID primary key(userID)
 );
 select * from user;
@@ -64,7 +66,18 @@ constraint fk_cartDetail_p_Id foreign key (p_Id) references product(p_Id),
 constraint fk_cartDetail_userId foreign key(userID) references user(userID),
 constraint fk_cartDetail_cartId foreign key(cartId) references cart(cartId)
 );
+create table role
+(
+role_id int primary key,
+name varchar(15) unique, not null
+);
 
+create table user_role
+(
+user_id varchar(15),
+role_id int default 30,
+primary key(user_id, role_id)
+);
 
 insert into category (catId,catName,catDescription,catImg) values ('C001','Cookbooks', 'Food and Wine','no-image.jpg');
 insert into category (catId,catName,catDescription,catImg) values ('C002','Primary Textbooks', 'Primary School Textbooks','no-image.jpg');
@@ -78,7 +91,7 @@ insert into supplier (supId,supName,supAddress,supContact, supEmail) values ('S0
 insert into product (p_id,catid,supid,p_name, p_desc,p_img,p_quantity,p_price,p_author) values ('P001','C004','S001','The Diary of a Young Girl','Writings from Anne Frank when she was in hiding during the Nazi Invasion','anne-frank.jpg',20, 35.99,'Anne Frank');
 insert into product (p_id,catid,supid,p_name, p_desc,p_img,p_quantity,p_price,p_author) values ('P002','C003','S002','High School English Grammar and Composition','Reference book for English grammar','English-book.jpg',50, 25.00,'P.C.Wren')
 
-insert into user (userid,usercontact,gender,password,useremail,username) values ('U001','9619637445','female','niit','happy@yahoo.com','happy@yahoo.com');
-insert into user (userid,usercontact,gender,password,useremail,username) values ('U002','9920677878','male','password123','bodh@yahoo.com','bodh@yahoo.com');
+insert into user (userid,usercontact,first_name, last_name, gender,password,useremail) values ('U001','9619637445','Dan','Brown','female','niit','happy@yahoo.com','address');
+insert into user (userid,usercontact,first_name, last_name, gender,password,useremail) values ('U002','9920677878','Ash','Rao','male','password123','bodh@yahoo.com','address');
 
 

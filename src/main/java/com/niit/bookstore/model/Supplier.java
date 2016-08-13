@@ -1,5 +1,7 @@
 package com.niit.bookstore.model;
 
+import java.util.UUID;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -46,6 +48,10 @@ public class Supplier {
 	}
 	public void setSupemail(String supemail) {
 		this.supemail = supemail;
+	}
+	
+	public Supplier(){
+		this.supid = 'S'+ UUID.randomUUID().toString().substring(24).toUpperCase();
 	}
 	
 }

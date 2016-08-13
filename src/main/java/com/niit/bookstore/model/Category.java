@@ -1,5 +1,7 @@
 package com.niit.bookstore.model;
 
+import java.util.UUID;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -50,5 +52,9 @@ public class Category {
 
 	public void setCatimg(String catimg) {
 		this.catimg = catimg;
+	}
+	
+	public Category (){
+		this.catid = 'C' +UUID.randomUUID().toString().substring(24).toUpperCase();
 	}
 }

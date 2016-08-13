@@ -1,5 +1,7 @@
 package com.niit.bookstore.model;
 
+import java.util.UUID;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -103,6 +105,10 @@ public class Product {
 
 	public void setP_author(String p_author) {
 		this.p_author = p_author;
+	}
+	
+	public Product(){
+		this.p_id='P'+ UUID.randomUUID().toString().substring(24).toUpperCase();
 	}
 
 }

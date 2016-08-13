@@ -28,7 +28,7 @@ public class UInfoDAOimpl implements UInfoDAO {
 	@Transactional
 	public void delete(String username) {
 		User user = new User();
-		user.setUsername(username);
+		user.setUseremail(username);
 		sessionFactory.getCurrentSession().delete(user);
 	}
 
