@@ -14,23 +14,16 @@ import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.niit.bookstore.dao.CartDAO;
-import com.niit.bookstore.dao.CartDAOimpl;
-import com.niit.bookstore.dao.CategoryDAO;
-import com.niit.bookstore.dao.CategoryDAOimpl;
-import com.niit.bookstore.dao.ProductDAO;
-import com.niit.bookstore.dao.ProductDAOimp;
-import com.niit.bookstore.dao.SupplierDAO;
-import com.niit.bookstore.dao.SupplierDAOimpl;
-import com.niit.bookstore.dao.UserDAO;
-import com.niit.bookstore.dao.UserDAOimpl;
+import com.niit.bookstore.model.BillingAddress;
 import com.niit.bookstore.model.Cart;
 import com.niit.bookstore.model.CartDetail;
 import com.niit.bookstore.model.Category;
+import com.niit.bookstore.model.Customer;
 import com.niit.bookstore.model.Product;
+import com.niit.bookstore.model.ShippingAddress;
 import com.niit.bookstore.model.Supplier;
-import com.niit.bookstore.model.ULogin;
 import com.niit.bookstore.model.User;
+import com.niit.bookstore.model.UserAuthority;
 //data source properties, hibernate properties; check pom.xml for all dependencies; Debugging
 @Configuration
 @ComponentScan("com.niit.bookstore")
@@ -68,7 +61,10 @@ public class ApplicationContextConfig {
     	sessionBuilder.addAnnotatedClass(User.class);
     	sessionBuilder.addAnnotatedClass(Cart.class);
     	sessionBuilder.addAnnotatedClass(CartDetail.class);
-    	sessionBuilder.addAnnotatedClass(ULogin.class);
+    	sessionBuilder.addAnnotatedClass(Customer.class);
+    	sessionBuilder.addAnnotatedClass(BillingAddress.class);
+    	sessionBuilder.addAnnotatedClass(ShippingAddress.class);
+    	sessionBuilder.addAnnotatedClass(UserAuthority.class);
       	return sessionBuilder.buildSessionFactory();
     }
     

@@ -6,12 +6,14 @@ import com.niit.bookstore.model.Product;
 
 public interface ProductDAO {
 	List<Product> productlist();
+	
+	List<Product> related_products(String p_id);
 
-	Product get(String id);
+	Product get(String p_id);
 
 	void saveorUpdate(Product product);
 
-	void delete(String id);
+	void delete(String p_id);
 	
 	List<Product> getListbyCatId(String catid);
 

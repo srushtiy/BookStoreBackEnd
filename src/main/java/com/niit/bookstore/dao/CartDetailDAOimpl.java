@@ -25,17 +25,37 @@ public class CartDetailDAOimpl implements CartDetailDAO {
 	public void saveorUpdate(CartDetail cartDetail) {
 		sessionFactory.getCurrentSession().saveOrUpdate(cartDetail);
 	}
-
+	
+	@Transactional
 	public void delete(String cartDetailid) {
-		sessionFactory.getCurrentSession().delete(cartDetailid);
+		CartDetail cd = new CartDetail();
+		cd.setCartDetailid(cartDetailid);
+		sessionFactory.getCurrentSession().delete(cd);
 	}
-
-	public List<CartDetail> getDetailbyUserId(String userid) {
-		String hql = "from CartDetail where userId=" + "'" + userid + "'";
+	
+    @Transactional
+	public List<CartDetail> getDetailbyCustomerId(String customer_id) {
+		String hql = "from CartDetail where customerId=" + "'" + customer_id + "'";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		List<CartDetail> CartList = (List<CartDetail>) query.list();
 		return CartList;
 	}
-	
 
+    @Transactional
+	public CartDetail getCartItem(String cartDetailid) {
+    	String hql = "from CartItem where cartDetailId=" + "'" + cartDetailid + "'";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		List<CartDetail> cartItemList = query.list();
+		if(cartItemList!=null && !cartItemList.isEmpty())
+			return cartItemList.get(0);
+		return null;
+	}
+    
+    @Transactional
+	public List<CartDetail> listCartDetails() {
+		String hql = "from CartDetail";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		List<CartDetail> cartItems = query.list();
+		return cartItems;
+	}
 }

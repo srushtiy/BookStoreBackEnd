@@ -18,7 +18,7 @@ public static void main(String[] args) {
 	   SupplierDAO supplierDAO = 	(SupplierDAO) context.getBean("supplierDAO");
 	   
 	   Supplier supplier = 	(Supplier) context.getBean("supplier");
-	   supplier.setSupid("S003");
+	   supplier.setSupid("S001");
 	   supplier.setSupname("Workman");
 	   supplier.setSupaddress("S.V. Road, Vile Parle, Mumbai");
 	   supplier.setSupcontact("9899878778");

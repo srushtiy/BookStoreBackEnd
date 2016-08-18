@@ -3,22 +3,21 @@ package com.niit.bookstore.dao;
 import java.util.List;
 
 import com.niit.bookstore.model.Category;
+import com.niit.bookstore.model.Product;
 
 public interface CategoryDAO {
 
-
-
 	public List<Category> list();
 
-	public Category get(String id);
+	public Category get(String catid);
 	
 	public void saveOrUpdate(Category category);
-
-	public void delete(String id);
 	
-	/*List<Product> selectedCategoryProductList(String id);
+	public void delete(String catid);
 	
-	int getProductCountByCategory(String id);	
+	public List<Product> ProductListbyCat(String id);
+	
+/*	int getProductCountByCategory(String id);	
 */
 
 

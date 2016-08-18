@@ -5,8 +5,10 @@ import java.util.UUID;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name="category")
@@ -20,7 +22,8 @@ public class Category {
 
 	private String catdescription;
 	
-	private String catimg;
+	@Transient
+	private MultipartFile catimg;
 
 	public String getCatid() {
 		return catid;
@@ -46,11 +49,11 @@ public class Category {
 		this.catdescription = catdescription;
 	}
 
-	public String getCatimg() {
+	public MultipartFile getCatimg() {
 		return catimg;
 	}
 
-	public void setCatimg(String catimg) {
+	public void setCatimg(MultipartFile catimg) {
 		this.catimg = catimg;
 	}
 	

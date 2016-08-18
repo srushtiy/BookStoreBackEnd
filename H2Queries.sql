@@ -14,6 +14,8 @@ supcontact varchar(20) not null,
 supemail varchar(255) not null,
 constraint pk_supplier_supId primary key(supid)
 );
+ALTER TABLE Supplier
+ADD supimg varchar(225);
 
 
 CREATE TABLE PRODUCT(
@@ -26,50 +28,96 @@ p_img varchar,
 p_quantity int(20),
 p_price decimal(7,2) not null,
 p_author varchar(100),
+out_of_stock boolean,
 constraint pk_product_p_Id primary key(p_Id),
 constraint fk_product_catId foreign key(catId) references category(catId) on delete set null,
 constraint fk_product_supId foreign key(supId) references supplier(supId) on delete set null
 );
+Alter Table Product 
+Drop Column p_img;
+Alter Table Product
+Add Column productimg varchar(225);
 
-create table user(
-userid varchar(30),
-usercontact varchar(30) not null,
-first_name varchar(50) not null,
-last_name varchar(50) not null,
-gender varchar(10) not null,
-password varchar(200) not null,
-useremail varchar(255) not null,
-address varchar(max),
-constraint pk_user_userID primary key(userID)
+SELECT * FROM PRODUCT ;
+
+create table customer(
+customer_id varchar,
+customer_first_name varchar,
+customer_last_name varchar,
+contactno varchar ,
+gender varchar ,
+email varchar,
+password varchar ,
+username varchar ,
+enabled boolean,
+constraint pk_customer_customerId primary key(customer_id),
 );
-select * from user;
+ALTER TABLE Customer
+ADD Column Customer_First_Name varchar;
+SELECT * FROM CUSTOMER;
+ALTER TABLE Customer
+ADD Column Customer_Last_Name varchar;
+SELECT * FROM CUSTOMER;
 
 create table cart(
 cartid varchar(30),
-userid varchar(30),
-product_quantity int(20),
+customer_id varchar(30),
+no_of_products int(20),
 total_price decimal(8),
 constraint pk_cart_cartId primary key(cartid),
-constraint fk_cart_userId foreign key(userid) references USER(userid)
+constraint fk_cart_customer_id foreign key(customer_id) references CUSTOMER(customer_id) on delete cascade
 );
 select * from cart;
 
 create table cartDetail(
 cartdetailid varchar(20),
 p_id varchar(20),
-userid varchar(20),
+customer_id varchar(20),
 cartid varchar(20),
 quantity decimal(10),
 price_total decimal(15,2),
-constraint pk_cartDetail_cartDetailId primary key (cartDetailId),
-constraint fk_cartDetail_p_Id foreign key (p_Id) references product(p_Id),
-constraint fk_cartDetail_userId foreign key(userID) references user(userID),
-constraint fk_cartDetail_cartId foreign key(cartId) references cart(cartId)
+constraint pk_cartDetail_cartDetailid primary key (cartDetailid),
+constraint fk_cartDetail_p_Id foreign key (p_id) references product(p_id),
+constraint fk_cartDetail_userId foreign key(customer_id) references customer(customer_id),
+constraint fk_cartDetail_cartId foreign key(cartid) references cart(cartid)
 );
-create table role
-(
-role_id int primary key,
-name varchar(15) unique, not null
+
+create table BillingAddress(
+    billingadd_id varchar,
+    street varchar,
+    apartment varchar,
+    city varchar,
+    state varchar,
+    country varchar,
+    zip varchar,
+    constraint pk_BillingAddress_billingAddress_id primary key (billingadd_id),
+);
+
+create table ShippingAddress(
+    shippingadd_id varchar,
+    street varchar,
+    apartment varchar,
+    city varchar,
+    state varchar,
+    country varchar,
+    zip varchar,
+    constraint pk_ShippingAddress_shippingAddress_id primary key (shippingadd_id),
+);
+
+create table user(
+userid varchar not null,
+username varchar not null,
+password varchar not null,
+enabled boolean not null,
+constraint pk_user_userid primary key(userid)
+);
+
+create table userauthority(
+userauth_id varchar not null,
+username varchar not null,
+auth_role varchar not null,
+constraint fk_userauthority_username foreign key (username) references user(username),
+constraint pk_userauthority_userauthid primary key(userauth_id)
 );
 
 create table user_role
@@ -94,4 +142,24 @@ insert into product (p_id,catid,supid,p_name, p_desc,p_img,p_quantity,p_price,p_
 insert into user (userid,usercontact,first_name, last_name, gender,password,useremail) values ('U001','9619637445','Dan','Brown','female','niit','happy@yahoo.com','address');
 insert into user (userid,usercontact,first_name, last_name, gender,password,useremail) values ('U002','9920677878','Ash','Rao','male','password123','bodh@yahoo.com','address');
 
+
+
+create table user(
+userid varchar(30),
+usercontact varchar(30) not null,
+first_name varchar(50) not null,
+last_name varchar(50) not null,
+gender varchar(10) not null,
+password varchar(200) not null,
+useremail varchar(255) not null,
+address varchar(max),
+constraint pk_user_userID primary key(userID)
+);
+select * from user;
+
+create table role
+(
+role_id int primary key,
+name varchar(15) unique, not null
+);
 

@@ -1,4 +1,4 @@
-package com.niit.bookstore.dao;
+/*package com.niit.bookstore.dao;
 
 import java.util.List;
 
@@ -16,3 +16,4 @@ public interface ULoginDAO {
 
 
 }
+*/

@@ -2,28 +2,24 @@ package com.niit.bookstore;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import com.niit.bookstore.dao.CategoryDAO;
 import com.niit.bookstore.model.Category;
+import com.niit.bookstore.dao.CategoryDAO;
 
 public class CategoryTest {
 	
 	public static void main(String[] args) {
-		
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
-		
 		context.scan("com.niit.bookstore");
 		context.refresh();
 		
-		
-	   CategoryDAO categoryDAO = 	(CategoryDAO) context.getBean("categoryDAO");
-	   
-	   Category category = 	(Category) context.getBean("category");
-	   category.setCatid("C005");;
-	   category.setCatname("Sports and Recreation");
-	   category.setCatdescription("Sports, Camping,Football,Tennis");
-	   
-	   
-	   categoryDAO.saveOrUpdate(category);
+	Category category = (Category) context.getBean("category");
+	
+	CategoryDAO categoryDAO = (CategoryDAO) context.getBean("categoryDAO");
+		category.setCatid("C001");
+		category.setCatname("Sports and Recreation");
+		category.setCatdescription("Sports, Fitness and Recreation");
+
+		categoryDAO.saveOrUpdate(category);
 	   
 	   
 	   

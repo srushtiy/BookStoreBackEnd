@@ -10,7 +10,11 @@ public interface CartDetailDAO {
 	
 	void delete(String cartDetailid);
 	
-	List<CartDetail> getDetailbyUserId(String userid);
+	List<CartDetail> getDetailbyCustomerId(String customer_id);
+	
+	CartDetail getCartItem(String cartDetailid);
+	
+	List<CartDetail> listCartDetails();
 	
 
 }

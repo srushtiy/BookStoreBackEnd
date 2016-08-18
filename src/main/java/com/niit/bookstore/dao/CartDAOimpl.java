@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.bookstore.model.Cart;
+import com.niit.bookstore.model.Product;
 
 @Repository("cartDAO")
 public class CartDAOimpl implements CartDAO {
@@ -23,21 +24,21 @@ public class CartDAOimpl implements CartDAO {
 
 	@Transactional
 	public List<Cart> list() {
-		@SuppressWarnings("unchecked")
-		List<Cart> listCart = (List<Cart>) sessionFactory.getCurrentSession().createCriteria(Cart.class)
-				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
-		return listCart;
+		String hql = "from Cart";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		List<Cart> cartlist = query.list();
+		return cartlist;
 	}
 
 	@Transactional
-	public Cart getbyuserid(String userid)  {
-		String hql = "from Cart where id=" + "'" + userid + "'";
+	public Cart getbycustomerid(String customerid)  {
+		String hql = "from Cart where id=" + "'" + customerid + "'";
 		// from category where id = '101'
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
-		List<Cart> listCart = (List<Cart>) query.list();
+		List<Cart> userlist = (List<Cart>) query.list();
 
-		if (listCart != null && !listCart.isEmpty()) {
-			return listCart.get(0);
+		if (userlist != null && !userlist.isEmpty()) {
+			return userlist.get(0);
 		}
 		return null;
 	}
@@ -50,9 +51,7 @@ public class CartDAOimpl implements CartDAO {
 
 	@Transactional
 	public void delete(String cartid) {
-		Cart cart = new Cart();
-		cart.setCartid(cartid);
-		sessionFactory.getCurrentSession().delete(cart);
+		sessionFactory.getCurrentSession().delete(cartid);
 	}
 
 

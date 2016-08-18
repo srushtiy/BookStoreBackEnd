@@ -5,8 +5,10 @@ import java.util.UUID;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name="supplier")
@@ -19,6 +21,15 @@ public class Supplier {
 	private String supaddress;
 	private String supcontact;
 	private String supemail;
+	@Transient
+	private MultipartFile supimg;
+	
+	public MultipartFile getSupimg() {
+		return supimg;
+	}
+	public void setSupimg(MultipartFile supimg) {
+		this.supimg = supimg;
+	}
 	public String getSupid() {
 		return supid;
 	}

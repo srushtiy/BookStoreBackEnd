@@ -52,17 +52,29 @@ public class ProductDAOimp implements ProductDAO {
 	}
 
 	@Transactional
-	public void delete(String id) {
+	public void delete(String p_id) {
 		Product product = new Product();
-		product.setP_id(id);
+		product.setP_id(p_id);
 		sessionFactory.getCurrentSession().delete(product);
 
 	}
 
+	@Transactional
 	public List<Product> getListbyCatId(String catid) {
 		@SuppressWarnings("unchecked")
 		List<Product> getByCatId = (List<Product>) sessionFactory.getCurrentSession().createCriteria(Product.class)
 				.createCriteria("catid", catid);
 		return getByCatId;
+	}
+	
+    @Transactional
+	public List<Product> related_products(String p_id) {
+		Product product = get(p_id);
+		
+		String hql = "from Product where product_id!=" + "'" + p_id + "'" + "and" + " category_id=" + "'"
+				+ product.getCatid() + "'" + "and supplier_id!=" + "'" + product.getSupid();
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		List<Product> similarProductList = query.list();
+		return similarProductList;
 	}
 }

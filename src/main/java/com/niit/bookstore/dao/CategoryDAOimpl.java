@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.bookstore.model.Category;
+import com.niit.bookstore.model.Product;
 
 @Repository(value="categoryDAO")
 public class CategoryDAOimpl implements CategoryDAO {
@@ -31,15 +32,15 @@ public class CategoryDAOimpl implements CategoryDAO {
 	}
 
 	@Transactional
-	public void delete(String id) {
+	public void delete(String catid) {
 		Category category = new Category();
-		category.setCatid(id);
+		category.setCatid(catid);
 		sessionFactory.getCurrentSession().delete(category);
 	}
 
 	@Transactional
-	public Category get(String id) {
-		String hql = "from Category where id=" + "'"+ id +"'";
+	public Category get(String catid) {
+		String hql = "from Category where cat id=" + "'"+ catid +"'";
 		//  from category where id = '101'
 		Query query =  sessionFactory.getCurrentSession().createQuery(hql);
 		List<Category> listCategory = (List<Category>) query.list();
@@ -58,6 +59,14 @@ public class CategoryDAOimpl implements CategoryDAO {
 				.createCriteria(Category.class)
 				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
 		return listCategory;
+	}
+
+	@Transactional
+	public List<Product> ProductListbyCat(String id) {
+		String hql="from Product where category_id=" + "'" + id + "'";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		List<Product> listSelectedProducts = query.list();
+		return listSelectedProducts; 
 	}
 	
 	/*@Transactional

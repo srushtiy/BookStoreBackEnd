@@ -1,5 +1,7 @@
 package com.niit.bookstore.model;
 
+import java.util.UUID;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -12,8 +14,8 @@ public class CartDetail {
 	@Id
 	private String cartdetailid;
 	private String cartid;
-	private String userid;
-	private String p_Id;
+	private String customer_id;
+	private String p_id;
 	private int quantity;
 	private double price_total;
 
@@ -22,7 +24,7 @@ public class CartDetail {
 	}
 
 	public void setCartDetailid(String cartDetailid) {
-		this.cartdetailid = cartdetailid;
+		this.cartdetailid = cartDetailid;
 	}
 
 	public String getCartid() {
@@ -34,11 +36,11 @@ public class CartDetail {
 	}
 
 	public String getP_Id() {
-		return p_Id;
+		return p_id;
 	}
 
 	public void setP_Id(String p_Id) {
-		this.p_Id = p_Id;
+		this.p_id = p_Id;
 	}
 
 	public int getQuantity() {
@@ -57,12 +59,16 @@ public class CartDetail {
 		this.price_total = price_total;
 	}
 
-	public String getUserID() {
-		return userid;
+	public String getCustomerID() {
+		return customer_id;
 	}
 
-	public void setUserID(String userID) {
-		this.userid = userID;
+	public void setCustomerID(String customer_id) {
+		this.customer_id = customer_id;
+	}
+	
+	public CartDetail(){
+		this.cartdetailid="CDI"+UUID.randomUUID().toString().substring(24).toUpperCase();
 	}
 
 }

@@ -5,8 +5,10 @@ import java.util.UUID;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name = "product")
@@ -16,24 +18,14 @@ public class Product {
 	private String p_id;
 	private String catid;
 	private String supid;
-	/*
-	 * @ManyToOne
-	 * 
-	 * @JoinColumn(name="catid",nullable=false,updatable=false,
-	 * insertable=false) private Category category;
-	 * 
-	 * @ManyToOne
-	 * 
-	 * @JoinColumn(name="supid",nullable=false,updatable=false,
-	 * insertable=false) private Supplier supplier;
-	 */
-
 	private String p_name;
-	private String p_img;
 	private String p_desc;
 	private int p_quantity;
 	private double p_price;
+	private boolean out_of_stock;
 	private String p_author;
+	@Transient
+	private MultipartFile productimg;
 
 	public String getP_id() {
 		return p_id;
@@ -91,14 +83,6 @@ public class Product {
 		this.p_price = p_price;
 	}
 
-	public String getP_img() {
-		return p_img;
-	}
-
-	public void setP_img(String p_img) {
-		this.p_img = p_img;
-	}
-
 	public String getP_author() {
 		return p_author;
 	}
@@ -111,4 +95,31 @@ public class Product {
 		this.p_id='P'+ UUID.randomUUID().toString().substring(24).toUpperCase();
 	}
 
+	public boolean isOut_of_stock() {
+		return out_of_stock;
+	}
+
+	public void setOut_of_stock(boolean out_of_stock) {
+		this.out_of_stock = out_of_stock;
+	}
+
+	public MultipartFile getProductimg() {
+		return productimg;
+	}
+
+	public void setProductimg(MultipartFile productimg) {
+		this.productimg = productimg;
+	}
+
 }
+/*
+ * @ManyToOne
+ * 
+ * @JoinColumn(name="catid",nullable=false,updatable=false,
+ * insertable=false) private Category category;
+ * 
+ * @ManyToOne
+ * 
+ * @JoinColumn(name="supid",nullable=false,updatable=false,
+ * insertable=false) private Supplier supplier;
+ */

@@ -1,4 +1,4 @@
-package com.niit.bookstore;
+/*package com.niit.bookstore;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -23,4 +23,4 @@ public class UserTest {
 		
 		userDAO.saveorUpdate(user);
 	}
-}
+}*/

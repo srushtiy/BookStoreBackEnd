@@ -5,13 +5,13 @@ import java.util.List;
 import com.niit.bookstore.model.User;
 
 public interface UserDAO {
-	List<User> userlist();
+	List<User> list();
 
 	User get(String userid);
 
 	void saveorUpdate(User user);
 	
-	User fetchbyUsername(String username);
+	User getbyUsername(String username);
 
 	/*void delete(String id);*/
 
