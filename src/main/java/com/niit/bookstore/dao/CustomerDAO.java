@@ -11,4 +11,6 @@ public interface CustomerDAO {
 	List<Customer> list();
 	
 	Customer getCustomerByUserName(String username);
+	
+	void saveOrUpdate(Customer customer);
 }
