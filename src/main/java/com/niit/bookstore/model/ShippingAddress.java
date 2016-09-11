@@ -1,13 +1,23 @@
 package com.niit.bookstore.model;
 
+import java.io.Serializable;
 import java.util.UUID;
 
+import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
-public class ShippingAddress {
+import org.springframework.stereotype.Component;
 
+@Entity
+@Table
+@Component
+public class ShippingAddress implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 	@Id
 	private String shippingadd_id;
+	private String customer_id;
 	private String street;
 	private String apartment;
 	private String city;
@@ -60,5 +70,11 @@ public class ShippingAddress {
 	 public ShippingAddress(){
 	    	this.shippingadd_id="SA"+UUID.randomUUID().toString().substring(27).toUpperCase();
 	    }
+	public String getCustomer_id() {
+		return customer_id;
+	}
+	public void setCustomer_id(String customer_id) {
+		this.customer_id = customer_id;
+	}
 	
 }

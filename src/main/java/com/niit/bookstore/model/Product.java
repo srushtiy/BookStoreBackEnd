@@ -1,7 +1,9 @@
 package com.niit.bookstore.model;
 
+import java.io.Serializable;
 import java.util.UUID;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -13,7 +15,9 @@ import org.springframework.web.multipart.MultipartFile;
 @Entity
 @Table(name = "product")
 @Component
-public class Product {
+public class Product implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	@Id
 	private String p_id;
 	private String catid;
@@ -22,6 +26,7 @@ public class Product {
 	private String p_desc;
 	private int p_quantity;
 	private double p_price;
+	@Column(name="out_of_stock")
 	private boolean out_of_stock;
 	private String p_author;
 	@Transient

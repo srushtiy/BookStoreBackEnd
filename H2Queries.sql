@@ -84,6 +84,7 @@ constraint fk_cartDetail_cartId foreign key(cartid) references cart(cartid)
 
 create table BillingAddress(
     billingadd_id varchar,
+    customer_id varchar(20),
     street varchar,
     apartment varchar,
     city varchar,
@@ -91,10 +92,12 @@ create table BillingAddress(
     country varchar,
     zip varchar,
     constraint pk_BillingAddress_billingAddress_id primary key (billingadd_id),
+    constraint fk_billingadd_customer foreign key (customer_id) references customer(customer_id),
 );
 
 create table ShippingAddress(
     shippingadd_id varchar,
+    customer_id varchar,
     street varchar,
     apartment varchar,
     city varchar,
@@ -102,7 +105,29 @@ create table ShippingAddress(
     country varchar,
     zip varchar,
     constraint pk_ShippingAddress_shippingAddress_id primary key (shippingadd_id),
+    constraint fk_shippingadd_customer foreign key (customer_id) references customer(customer_id),
 );
+
+create table orderItems(
+orderitems_id varchar(20),
+customer_id varchar,
+p_id varchar(20),
+totalPrice decimal(10,2) not null,
+quantity decimal(10) not null,
+constraint pk_orderedItems_orderedItemId primary key (orderitems_id),
+constraint fk_orderedItems_customerId foreign key(customer_id) references customer(customer_id) on delete set null
+); 
+
+create table orderDet(
+order_id varchar(20),
+customer_id varchar(20) not null,
+grandTotal decimal(20,2) not null,
+shippingAddressId varchar(20) not null,
+billingAddressId varchar(20) not null,
+constraint pk_orderDetail_orderDetailId primary key (order_id),
+constraint fk_orderDetail_customerId  foreign key(customer_id) references customer(customer_id) on delete set null
+);
+
 
 create table user(
 userid varchar not null,
@@ -126,6 +151,19 @@ user_id varchar(15),
 role_id int default 30,
 primary key(user_id, role_id)
 );
+
+create table card(
+card_id varchar(20),
+customer_id varchar(20) not null ,
+cardNumber varchar(20) not null,
+expiryMonth varchar not null,
+expiryYear varchar not null,
+cvNumber varchar(4) not null ,
+card_name varchar(50) not null,
+totalPrice decimal(10,2) not null,
+constraint pk_card_cardid primary key (card_id),
+constraint fk_cardDetail_customerid foreign key (customer_id) references customer(customer_id) on delete set null
+); 
 
 insert into category (catId,catName,catDescription,catImg) values ('C001','Cookbooks', 'Food and Wine','no-image.jpg');
 insert into category (catId,catName,catDescription,catImg) values ('C002','Primary Textbooks', 'Primary School Textbooks','no-image.jpg');

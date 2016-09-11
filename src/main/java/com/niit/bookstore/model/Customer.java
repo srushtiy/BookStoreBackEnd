@@ -1,5 +1,6 @@
 package com.niit.bookstore.model;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 import javax.persistence.Entity;
@@ -12,7 +13,9 @@ import org.springframework.stereotype.Component;
 @Entity
 @Table
 @Component
-public class Customer {
+public class Customer implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	@Id
 	private String customer_id;
 	private String customer_first_name;

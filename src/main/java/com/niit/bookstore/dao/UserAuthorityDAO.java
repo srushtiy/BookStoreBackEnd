@@ -10,6 +10,7 @@ public interface UserAuthorityDAO {
 /*	void edit(UserAuthority userauth);
 */		
 	UserAuthority get(String userauth_id);
+	UserAuthority getbyusername(String username);
 		
 	List<UserAuthority> list();
 }

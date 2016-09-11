@@ -35,7 +35,7 @@ public class CartDetailDAOimpl implements CartDetailDAO {
 	
     @Transactional
 	public List<CartDetail> getDetailbyCustomerId(String customer_id) {
-		String hql = "from CartDetail where customerId=" + "'" + customer_id + "'";
+		String hql = "from CartDetail where customer_id=" + "'" + customer_id + "'";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		List<CartDetail> CartList = (List<CartDetail>) query.list();
 		return CartList;
@@ -43,7 +43,7 @@ public class CartDetailDAOimpl implements CartDetailDAO {
 
     @Transactional
 	public CartDetail getCartItem(String cartDetailid) {
-    	String hql = "from CartItem where cartDetailId=" + "'" + cartDetailid + "'";
+    	String hql = "from CartDetail where cartDetailId=" + "'" + cartDetailid + "'";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		List<CartDetail> cartItemList = query.list();
 		if(cartItemList!=null && !cartItemList.isEmpty())

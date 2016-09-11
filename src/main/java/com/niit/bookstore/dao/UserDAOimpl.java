@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.niit.bookstore.model.Customer;
 import com.niit.bookstore.model.User;
+import com.niit.bookstore.model.UserAuthority;
 
 @Repository("userDAO")
 public class UserDAOimpl implements UserDAO {
@@ -55,5 +57,38 @@ public class UserDAOimpl implements UserDAO {
 		}
 		return null;
 	}
+
+	@Transactional
+	public boolean isValidUser(String username, String password) {
+		String hql = "from User where username=" + "'" + username + "'" + "and password=" + "'" + password +"'";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		List<User> isValid = query.list();
+		if (isValid !=null && !isValid.isEmpty()){
+			return true;
+		}
+		return false;
+	}
+
+	/*@Transactional
+	public String getrole(String userid) {
+		String hql = "from UserAuthority where userid=" +"'" + userid + "'";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		List<UserAuthority> isAdmin = query.list();
+		if(isAdmin != null && !isAdmin.isEmpty()){
+			return isAdmin.get(0).getAuth_role();
+		}
+		return null;
+	}
+
+	@Transactional
+	public String getcustomerid(String userid) {
+		String hql = "from Customer where userid=" +"'" + userid + "'";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		List<Customer> customer = query.list();
+		if(customer != null && !customer.isEmpty()){
+			return customer.get(0).getCustomer_id();
+		}
+		return null;
+	}*/
 
 }

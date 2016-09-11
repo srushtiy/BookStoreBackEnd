@@ -52,5 +52,16 @@ public class CustomerDAOimpl implements CustomerDAO {
 		return null;
 
 	}
+
+	@Transactional
+	public Customer getCustomerByFirstName(String firstname) {
+		String hql = "from Customer where customer_first_name=" + "'" + firstname + "'";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		List<Customer> listOfCustomers = query.list();
+		if (listOfCustomers != null && !listOfCustomers.isEmpty()){
+			return  listOfCustomers.get(0);
+		}
+		return null;
+	}
 }
 

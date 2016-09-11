@@ -31,7 +31,7 @@ public class UserAuthorityDAOimpl implements UserAuthorityDAO {
 
 	@Transactional
 	public UserAuthority get(String userauth_id) {
-		String hql = "from UserAuth where userauth_id=" + "'" + userauth_id + "'";
+		String hql = "from UserAuthority where userauth_id=" + "'" + userauth_id + "'";
 		Query query =(Query) sessionFactory.getCurrentSession().createQuery(hql);
 		List<UserAuthority> listAuthorities= (List<UserAuthority>)query.list();
 		if (listAuthorities!= null && !listAuthorities.isEmpty()) {
@@ -46,6 +46,17 @@ public class UserAuthorityDAOimpl implements UserAuthorityDAO {
 		List<UserAuthority> listAuthorities= (List<UserAuthority>) sessionFactory.getCurrentSession()
 		.createCriteria(UserAuthority.class).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
 		return listAuthorities;
+	}
+
+	@Transactional
+	public UserAuthority getbyusername(String username) {
+		String hql = "from UserAuthority where username=" + "'" + username + "'";
+		Query query =(Query) sessionFactory.getCurrentSession().createQuery(hql);
+		List<UserAuthority> listAuthorities= (List<UserAuthority>)query.list();
+		if (listAuthorities!= null && !listAuthorities.isEmpty()) {
+			return listAuthorities.get(0);
+		}
+		return null;
 	}
 
 }

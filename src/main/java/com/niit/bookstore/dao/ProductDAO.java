@@ -16,5 +16,6 @@ public interface ProductDAO {
 	void delete(String p_id);
 	
 	List<Product> getListbyCatId(String catid);
+	List<Product> searchProduct(String keyword);
 
 }

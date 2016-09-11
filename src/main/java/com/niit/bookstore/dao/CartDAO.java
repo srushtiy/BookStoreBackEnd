@@ -14,5 +14,7 @@ public interface CartDAO {
 
 	void delete(String cartid);
 	
+	/*Cart getbyuserid(String username);*/
+	
 
 }

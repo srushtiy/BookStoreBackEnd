@@ -1,5 +1,6 @@
 package com.niit.bookstore.model;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 import javax.persistence.Entity;
@@ -13,8 +14,9 @@ import org.springframework.web.multipart.MultipartFile;
 @Entity
 @Table(name="supplier")
 @Component
-public class Supplier {
+public class Supplier implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
 	@Id
 	private String supid;
 	private String supname;

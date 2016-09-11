@@ -1,5 +1,6 @@
 package com.niit.bookstore.dao;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -9,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.niit.bookstore.model.Category;
 import com.niit.bookstore.model.Product;
 
 @Repository("productDAO")
@@ -27,6 +27,12 @@ public class ProductDAOimp implements ProductDAO {
 		@SuppressWarnings("unchecked")
 		List<Product> listProduct = (List<Product>) sessionFactory.getCurrentSession().createCriteria(Product.class)
 				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
+		Iterator it = listProduct.iterator();
+		while (it.hasNext()) {
+			Product p = (Product) it.next();
+			System.out.println(p.getP_name());
+			System.out.println(p.getCatid());
+		}
 		return listProduct;
 
 	}
@@ -66,15 +72,25 @@ public class ProductDAOimp implements ProductDAO {
 				.createCriteria("catid", catid);
 		return getByCatId;
 	}
-	
-    @Transactional
+
+	@Transactional
 	public List<Product> related_products(String p_id) {
 		Product product = get(p_id);
-		
-		String hql = "from Product where product_id!=" + "'" + p_id + "'" + "and" + " category_id=" + "'"
-				+ product.getCatid() + "'" + "and supplier_id!=" + "'" + product.getSupid();
+
+		String hql = "from Product where p_id!=" + "'" + p_id + "'" + "and" + " catid=" + "'" + product.getCatid() + "'"
+				+ "and supplier_id!=" + "'" + product.getSupid();
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		List<Product> similarProductList = query.list();
 		return similarProductList;
 	}
+
+	@Transactional
+	public List<Product> searchProduct(String keyword) {
+		String hql = "from Product p where lower(p.p_name) like lower('%" + keyword + "%') ";
+
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		List<Product> listOfSearchedProducts = query.list();
+		return listOfSearchedProducts;
+	}
+
 }

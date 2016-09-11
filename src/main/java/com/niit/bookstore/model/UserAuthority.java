@@ -11,7 +11,8 @@ import org.springframework.stereotype.Component;
 @Entity
 @Component
 @Table
-public class UserAuthority {
+public class UserAuthority{
+	
 	
 	@Id
 	private String userauth_id;
@@ -46,8 +47,4 @@ public class UserAuthority {
 	public UserAuthority(){
 		   this.userauth_id="UA"+UUID.randomUUID().toString().substring(30).toUpperCase();
 	   }
-		
-	
-	
-
 }

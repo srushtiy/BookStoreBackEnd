@@ -13,4 +13,6 @@ public interface CustomerDAO {
 	Customer getCustomerByUserName(String username);
 	
 	void saveOrUpdate(Customer customer);
+	
+	Customer getCustomerByFirstName(String firstname);
 }

@@ -40,7 +40,7 @@ public class CategoryDAOimpl implements CategoryDAO {
 
 	@Transactional
 	public Category get(String catid) {
-		String hql = "from Category where cat id=" + "'"+ catid +"'";
+		String hql = "from Category where catid=" + "'"+ catid +"'";
 		//  from category where id = '101'
 		Query query =  sessionFactory.getCurrentSession().createQuery(hql);
 		List<Category> listCategory = (List<Category>) query.list();
@@ -63,7 +63,7 @@ public class CategoryDAOimpl implements CategoryDAO {
 
 	@Transactional
 	public List<Product> ProductListbyCat(String id) {
-		String hql="from Product where category_id=" + "'" + id + "'";
+		String hql="from Product where catid=" + "'" + id + "'";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		List<Product> listSelectedProducts = query.list();
 		return listSelectedProducts; 

@@ -32,7 +32,7 @@ public class CartDAOimpl implements CartDAO {
 
 	@Transactional
 	public Cart getbycustomerid(String customerid)  {
-		String hql = "from Cart where id=" + "'" + customerid + "'";
+		String hql = "from Cart where customer_id=" + "'" + customerid + "'";
 		// from category where id = '101'
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		List<Cart> userlist = (List<Cart>) query.list();

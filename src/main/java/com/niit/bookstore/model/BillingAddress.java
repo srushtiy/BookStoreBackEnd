@@ -1,5 +1,6 @@
 package com.niit.bookstore.model;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 import javax.persistence.Entity;
@@ -12,9 +13,12 @@ import org.springframework.stereotype.Component;
 @Entity
 @Table
 @Component
-public class BillingAddress {
+public class BillingAddress implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	@Id
 	private String billingadd_id;
+	private String customer_id;
 	private String street;
 	private String apartment;
 	private String city;
@@ -66,6 +70,12 @@ public class BillingAddress {
 	
 	public BillingAddress(){
 		this.billingadd_id = "BA" + UUID.randomUUID().toString().substring(24).toUpperCase(); 
+	}
+	public String getCustomer_id() {
+		return customer_id;
+	}
+	public void setCustomer_id(String customer_id) {
+		this.customer_id = customer_id;
 	}
 	
 	

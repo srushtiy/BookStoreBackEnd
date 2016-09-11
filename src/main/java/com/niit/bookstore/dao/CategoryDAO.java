@@ -19,7 +19,4 @@ public interface CategoryDAO {
 	
 /*	int getProductCountByCategory(String id);	
 */
-
-
-
 }

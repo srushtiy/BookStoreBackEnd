@@ -1,5 +1,6 @@
 package com.niit.bookstore.model;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 import javax.persistence.Entity;
@@ -9,13 +10,14 @@ import org.springframework.stereotype.Component;
 
 @Entity
 @Component
-public class Cart {
+public class Cart implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	@Id
 	private String cartid;
 	private String customer_id;
 	private double total_price;
 	private int no_of_products;
-
 	/*private String status;*/
 	public String getCartid() {
 		return cartid;

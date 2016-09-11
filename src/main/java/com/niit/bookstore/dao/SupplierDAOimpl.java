@@ -31,8 +31,8 @@ public class SupplierDAOimpl implements SupplierDAO {
 	}
 
 	@Transactional
-	public Supplier get(String id) {
-		String hql = "from Supplier where id=" + "'" + id + "'";
+	public Supplier get(String supid) {
+		String hql = "from Supplier where supid=" + "'" + supid + "'";
 		// from supplier where id = '101'
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		List<Supplier> listSupplier = (List<Supplier>) query.list();
